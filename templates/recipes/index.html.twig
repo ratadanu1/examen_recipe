@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Creeaza un recipe nou!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Formular</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form">
+                    {{ form_start(recipe_form) }}
+                    
+                    <div class="form-group">
+                        {{ form_label(recipe_form.title) }}
+                        {{ form_widget(recipe_form.title, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    
+                    <div class="form-group">
+                        {{ form_label(recipe_form.description) }}
+                        {{ form_widget(recipe_form.description, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    
+                    <div class="form-group">
+                        {{ form_label(recipe_form.dueDate) }}
+                        {{ form_widget(recipe_form.dueDate, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    
+                    <div class="form-group">
+                        {{ form_label(recipe_form.category_id) }}
+                        {{ form_widget(recipe_form.category_id, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_widget(recipe_form.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+                    </div>
+                    
+                    {{ form_end(recipe_form) }}
+                </div>
+            </div>
+        </div>
+
+        <a href="/recipelist" class="btn btn-primary">Inapoi la lista de sarcini</a>
+    </div>
+{% endblock %}

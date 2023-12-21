@@ -1,0 +1,44 @@
+	{% extends 'base.html.twig' %}
+
+	{% block body %}
+	<div class = "container">
+	<h1>Lista de sarcini</h1>
+	<div class="table-responsive">
+	<table class="table table-bordered">
+		<thead>
+		<tr>
+			<th>Titlu</th>
+			<th>Data limită</th>
+			<th>Categorie</th>
+			<th>Acțiuni</th>
+		</tr>
+		</thead>
+		<tbody>
+		{% for recipe in recipelist %}
+			<tr>
+			<td>{{ recipe.title }}</td>
+			<td>{{ recipe.dueDate|date('Y-m-d') }}</td>
+			<td>{{ recipe.categoryId.name }}</td>
+			<td>
+				<a href="/recipe/view/{{ recipe.id }}" class="btn btn-info">Detalii</a>
+				{% if app.user %}
+				<a href="/recipe/edit/{{ recipe.id }}" class="btn btn-warning">Editeaza</a>
+				<a href="/recipe/delete/{{ recipe.id }}" class="btn btn-danger">Sterge</a>
+				{% endif %}
+			</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+	</div>
+
+		<div class="navigation">
+			{{ knp_pagination_render(recipelist, 'to_do/pagination_bootstrap.html.twig') }}
+		</div>
+
+		{% if app.user %}
+		<a href="/recipe/create" class="btn btn-primary">Adaugă sarcină</a>
+		{% endif %}
+
+	</div>
+	{% endblock %}
